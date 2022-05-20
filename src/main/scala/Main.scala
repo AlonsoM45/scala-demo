@@ -12,10 +12,6 @@ object Main {
       "SCHEMA" -> sys.env.getOrElse("SNOW_SCHEMA", "")
     )
     val session = Session.builder.configs(configs).create
-    // Test Function
-    session.table("companies").select(callUDF("DB1.SCALA_DEMO.linearRegression", callBuiltin("ARRAY_AGG", col("N_EMPLOYEES")), callBuiltin("ARRAY_AGG", col("ANNUAL_REVENUE")), lit(100))).show()
-    // Test Stored Procedure
-    session.sql("call companyType()").show()
-    session.table("processed_company_type").show()
+    session.sql("SELECT 'Hello World!'").show()
   }
 }
